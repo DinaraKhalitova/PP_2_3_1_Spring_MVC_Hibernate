@@ -1,5 +1,5 @@
 
 ¡
-java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8Âûš¸ø1J$c9209890-6862-47a5-8f8a-007c623f3665
+java:S1171"YMove the contents of this initializer to a standard constructor or to field initializers.(ÒÌâ–øÿÿÿÿ8Âûš¸ø1J$3310534b-198f-43b1-8fa2-ec0b6433da3c
 š
-java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(• „ûÿÿÿÿ8²¤²¸ø1J$d5f3edf8-d322-4b50-9cf4-2cd06085f24b
+java:S6204"RReplace this usage of 'Stream.collect(Collectors.toList())' with 'Stream.toList()'(• „ûÿÿÿÿ8²¤²¸ø1J$688ef9ea-8871-4a05-9ba5-6978a68e8cc4
