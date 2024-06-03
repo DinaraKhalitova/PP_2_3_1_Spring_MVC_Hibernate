@@ -23,21 +23,24 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void saveUser(User user) {
+        em.persist(user);
 
     }
 
     @Override
     public User getUser(long id) {
-        return null;
+        return em.find(User.class, id);
     }
 
     @Override
-    public User updateUser(long id, User user) {
-        return null;
+    public void updateUser(long id, User user) {
+        user.setId(id);
+        em.merge(user);
     }
 
     @Override
     public void deleteById(long id) {
+        em.remove(em.getReference(User.class, id));
 
     }
 

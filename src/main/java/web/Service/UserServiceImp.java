@@ -18,6 +18,7 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
+
     @Override
     @Transactional
     public List<User> findAll() {
@@ -28,24 +29,25 @@ public class UserServiceImp implements UserService {
     @Transactional
     public void saveUser(User user) {
         userDao.saveUser(user);
-
     }
 
     @Override
     @Transactional
-    public Object getUser(long id) {
+    public User getUser(long id) {
         return userDao.getUser(id);
     }
 
     @Override
     @Transactional
-    public User updateUser(User user) {
-        return userDao.updateUser(user);
+    public void updateUser(long id, User user) {
+        userDao.updateUser(id, user);
+
     }
 
     @Override
     @Transactional
-    public void deleteById(int id) {
+    public void deleteById(long id) {
         userDao.deleteById(id);
+
     }
 }
