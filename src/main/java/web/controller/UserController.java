@@ -16,10 +16,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/")
     public String findAll(Model model) {
         model.addAttribute("allUsers", userService.findAll()) ;
-        return "users";
+        return "index";
     }
 
     @GetMapping("/addNewUser")
