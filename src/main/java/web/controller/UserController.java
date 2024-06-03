@@ -17,11 +17,10 @@ public class UserController {
     }
 
     @GetMapping
-    public String showAllUsers(Model model) {
-        model.addAttribute("allUsers", userService.getAllUsers()) ;
+    public String findAll(Model model) {
+        model.addAttribute("allUsers", userService.findAll()) ;
         return "users";
     }
-
 
     @GetMapping("/addNewUser")
     public String addNewUser(Model model) {
@@ -32,13 +31,13 @@ public class UserController {
     @PostMapping("/saveUser")
     public String saveUser (@ModelAttribute ("user") User user){
         userService.saveUser(user);
-        return  "redirect:/users";
+        return  "redirect:/";
     }
 
     @PostMapping("/deleteUser")
-    public String deleteUser (@RequestParam ("id") int id){
-        userService.deleteUser(id);
-        return "redirect:/users";
+    public String deleteById (@RequestParam ("id") int id){
+        userService.deleteById(id);
+        return "redirect:/";
     }
     @GetMapping ("/updateUser")
     public String  update(@RequestParam ("id") int id,Model model) {
