@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update User</title>
-
+    <title>Update person</title>
 </head>
 <body>
-<h1>Update User</h1>
-<form th:method="POST" th:action="@{/users/user(id=${user.getId()})}" th:object="${user}">
+<h2>Update user</h2>
+<br><br>
+<style>
+    .b3 {
+        background: #03207e;
+        color: #ffffff;
+        font-size: 10pt;
+    }
+</style>
+<form th:method="PATCH" th:action="@{/{id}(id=${user.getId()})}" th:object="${user}">
     <div>
-        <label for="name">FirstName:</label>
-        <input type="text" id="name" th:field="*{firstName}" required>
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}" id="name">
+        <br><br>
+        <label for="lastname">Lastname</label>
+        <input type="text" th:field="*{surname}" id="lastname">
+        <br><br>
+        <label for="email">Email</label>
+        <input type="text" th:field="*{email}" id="email">
+        <br><br>
+        <input type="submit" class="b3" value="Update"/>
     </div>
-    <div>
-        <label for="surname">LastName:</label>
-        <input type="text" id="surname" th:field="*{lastName}" required>
-    </div>
-    <div>
-        <label for="email">email:</label>
-        <input type="email" id="email" th:field="*{email}" required>
-    </div>
-
-    <button type="submit">Update</button>
 </form>
 </body>
 </html>

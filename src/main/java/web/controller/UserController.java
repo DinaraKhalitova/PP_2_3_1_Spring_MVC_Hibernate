@@ -18,80 +18,39 @@ public class UserController {
 
     @GetMapping("/")
     public String findAll(Model model) {
-        model.addAttribute("allUsers", userService.findAll()) ;
-        return "index";
+        model.addAttribute("allUsers", userService.findAll());
+        return "users";
     }
 
     @GetMapping("/addNewUser")
     public String addNewUser(Model model) {
         User user = new User();
-        model.addAttribute("user", user );
+        model.addAttribute("user", user);
         return "adduser";
     }
-    @PostMapping("/saveUser")
-    public String saveUser (@ModelAttribute ("user") User user){
-        userService.saveUser(user);
-        return  "redirect:/";
-    }
 
-    @PostMapping("/deleteUser")
-    public String deleteById (@RequestParam ("id") int id){
-        userService.deleteById(id);
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
         return "redirect:/";
     }
-    @GetMapping ("/updateUser")
-    public String  update(@RequestParam ("id") int id,Model model) {
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") int id) {
         model.addAttribute("user", userService.getUser(id));
         return "updateuser";
     }
-    @PostMapping("/user")
-    public String save ( @ModelAttribute("user") User user) {
 
-        userService.saveUser(user);
-        return "redirect:/users";
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
+        userService.updateUser(id, user);
+        return "redirect:/";
     }
 
-//    @GetMapping("/")
-//    public String usersPage(Model model) {
-//        model.addAttribute("users", userService.findAll());
-//        return "users";
-//    }
-//
-//    //@GetMapping("/showAddNewUserForm")
-//    //public String showAddNewUserForm(Model model) {
-//      //  model.addAttribute("addUser", new User());
-//       // return "add-user";
-//    //}
-//
-//    @PostMapping("/new")
-//    public String newUser(Model model) {
-//        model.addAttribute("user", new User());
-//        // userService.saveUser(user);
-//        return "new";
-//    }
-//
-//    @PostMapping("/create")
-//    public String create(@ModelAttribute("user") User user) {
-//        userService.saveUser(user);
-//        return "redirect:/";
-//    }
-//
-//    @GetMapping("/deleteUser")
-//    public String deleteUser(@RequestParam("id") int id) {
-//        userService.deleteById(id);
-//        return "redirect:/";
-//    }
-//
-//
-//    @PostMapping("/{id}/edit")
-//    public String edit(Model model, @PathVariable("id") long id) {
-//        model.addAttribute("user", userService.getUser(id));
-//        return "edit";
-//    }
-//
-//    @PostMapping("/updateUser")
-//    public String updateUser(@ModelAttribute("user") User user, Model model) {
-//        // Логика обновления пользователя
-//        return "redirect:/"; // Перенаправление на страницу пользователей после обновления
-//    }
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") long id) {
+        userService.deleteById(id);
+        return "redirect:/";
+    }
 }
+
