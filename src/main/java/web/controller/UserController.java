@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import web.Service.UserService;
 import web.model.User;
 
+import javax.transaction.Transactional;
+
 @Controller
 public class UserController {
     private UserService userService;
@@ -35,21 +37,23 @@ public class UserController {
         return "redirect:/";
     }
 
-    @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") int id) {
+    @GetMapping("/edit")
+    public String editUserForm(Model model, @RequestParam("id") long id) {
         model.addAttribute("user", userService.getUser(id));
         return "updateuser";
     }
 
-    @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") int id) {
-        userService.updateUser(id, user);
+    @PostMapping("/edit")
+    public String editUser(@ModelAttribute("user") User user) {
+        userService.updateUser(user);
         return "redirect:/";
     }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") long id) {
-        userService.deleteById(id);
+    @Transactional
+    @GetMapping("/deleteUser")
+    public String deleteUser(@RequestParam("id") int id) {
+        User user = userService.getUser(id);
+        userService.deleteUser(user);
         return "redirect:/";
     }
 }

@@ -27,11 +27,12 @@
             <td th:text="${user.getSurname()}">lastname</td>
             <td th:text="${user.getEmail()}">email</td>
             <td>
-                <button class="b2"><a th:href="@{/{id}/edit(id=${user.getId()})}">Update</a></button>
+                <button class="b2"><a th:href="@{/edit(id=${user.getId()})}">Update</a></button>
             </td>
             <td>
-                <form th:method="DELETE" th:action="@{/{id}(id=${user.getId()})}">
-                    <input type="submit" class="b3" value="Delete">
+                <form method="GET" th:action="@{'/deleteUser'}">
+                    <input type="hidden" name="id" th:value="${user.id}"/>
+                    <input type="submit" value="Delete">
                 </form>
             </td>
 
