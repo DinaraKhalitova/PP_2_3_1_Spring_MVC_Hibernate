@@ -15,7 +15,7 @@
         font-size: 10pt;
     }
 </style>
-<form th:method="POST" th:action="@{/edit}" th:object="${user}">
+<form th:method="POST" th:action="@{/edit(id=${user.getId()})}" th:object="${user}">
     <div>
         <label for="name">Name</label>
         <input type="text" th:field="*{name}" id="name">

@@ -34,7 +34,8 @@ public class UserDaoImp implements UserDao {
 
     @Override
     public void updateUser(User user) {
-        em.merge(user);
+        User updateUser = em.merge(user);
+        em.persist(updateUser);
     }
 
     @Override
