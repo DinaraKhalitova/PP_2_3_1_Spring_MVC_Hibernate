@@ -3,11 +3,12 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import web.Service.UserService;
 import web.model.User;
-
-import javax.transaction.Transactional;
 
 @Controller
 public class UserController {
@@ -49,7 +50,6 @@ public class UserController {
         return "redirect:/";
     }
 
-    @Transactional
     @GetMapping("/deleteUser")
     public String deleteUser(@RequestParam("id") int id) {
         User user = userService.getUser(id);
